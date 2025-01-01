@@ -5,12 +5,14 @@ import { getAddress } from "@ethersproject/address";
 import { randomBytes as generateRandomBytes } from "@noble/hashes/utils";
 import { bytesToHex } from "@noble/hashes/utils";
 
-export const generateWalletInfo = async (): Promise<{ label: string; value: string }[]> => {
-  // Generate entropy (128 bits = 16 bytes)
-  const randomBytes = generateRandomBytes(16);
-  const entropyHex = bytesToHex(randomBytes);
 
-  const mnemonic = entropyToMnemonic(randomBytes, wordlist);
+
+export function generateRandomMnemonic() : string {
+  const randomBytes = generateRandomBytes(16);
+  return entropyToMnemonic(randomBytes, wordlist);
+}
+
+export const generateWalletInfo = async ({mnemonic} : {mnemonic:string}): Promise<{ label: string; value: string }[]> => {
 
   // Generate seed from mnemonic
   const seed = await mnemonicToSeed(mnemonic);
@@ -29,7 +31,6 @@ export const generateWalletInfo = async (): Promise<{ label: string; value: stri
 
   // Return all the data as an array
   return [
-    { label: "Entropy", value: entropyHex },
     { label: "Mnemonic", value: mnemonic },
     { label: "Seed", value: seedHex },
     { label: "Private Key", value: privateKeyHex },
