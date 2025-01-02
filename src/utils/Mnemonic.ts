@@ -1,4 +1,4 @@
-import { entropyToMnemonic, mnemonicToSeed } from "@scure/bip39";
+import { entropyToMnemonic, mnemonicToSeed ,validateMnemonic} from "@scure/bip39";
 import { wordlist } from "@scure/bip39/wordlists/english";
 import { secp256k1 } from "@noble/curves/secp256k1";
 import { getAddress } from "@ethersproject/address";
@@ -10,6 +10,9 @@ import { bytesToHex } from "@noble/hashes/utils";
 export function generateRandomMnemonic() : string {
   const randomBytes = generateRandomBytes(16);
   return entropyToMnemonic(randomBytes, wordlist);
+}
+export function validateMnemonicWords(mnemonic: string) : boolean {
+  return validateMnemonic(mnemonic, wordlist);
 }
 
 export const generateWalletInfo = async ({mnemonic} : {mnemonic:string}): Promise<{ label: string; value: string }[]> => {

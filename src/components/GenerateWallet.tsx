@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CustomButton from "./CustomButton";
-import { generateRandomMnemonic } from "../utils/generateMnemonic";
+import { generateRandomMnemonic } from "../utils/Mnemonic";
 
 function GenerateWallet() {
   const [seedWords, setSeedWords] = useState("");

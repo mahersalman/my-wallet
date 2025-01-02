@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter as Router, Routes,Route} from "react-router-dom";
 import GetWallet from "./components/GetWallet";
 import GenerateWallet from "./components/GenerateWallet";
+import ImportWallet from "./components/ImportWallet";
 function App() {
   return (
     <div className="bg-image w-full h-screen bg-cover bg-center flex items-center justify-center">
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<GetWallet />} />
         <Route path="/new-wallet" element={<GenerateWallet />} />
+        <Route path="/import-wallet" element={<ImportWallet />} />
       </Routes>
     </Router>
     </div>
