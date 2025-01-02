@@ -32,3 +32,9 @@ secutiry :
 	    - Encrypted Mnemonic: The output of AES-GCM encryption.
 
         This data is typically stored in localStorage, IndexedDB, or a secure storage mechanism provided by the browser.
+
+    Decryption Process
+        1.	When the user logs in:
+            * Their password is used with the stored salt to regenerate the encryption key (via PBKDF2).
+        2.	The derived key is used to decrypt the mnemonic with AES-GCM.
+        3.	The decrypted mnemonic is returned for use in wallet operations.
